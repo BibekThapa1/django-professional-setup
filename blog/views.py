@@ -18,6 +18,7 @@ class BlogViewset(viewsets.ModelViewSet):
     def list(self, request):
         try:
             all = Post.objects.all()
+            print(request.GET)
             filterset = PostFilter(request.GET, queryset=all)
             filtered = filterset.qs
             return Response(BlogSerializer(filtered, many=True).data)
